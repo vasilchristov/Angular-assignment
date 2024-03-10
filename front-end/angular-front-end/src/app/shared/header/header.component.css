@@ -1,0 +1,37 @@
+
+  /* Header */
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+  }
+  
+  .header .logo img {
+    height: 70px;
+  }
+
+
+  .header .navigation ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  .header .navigation ul li {
+    margin: 0 1rem;
+  }
+  
+
+  .header .navigation ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  
+  .header .navigation ul li a:hover {
+    text-decoration: underline;
+  }
