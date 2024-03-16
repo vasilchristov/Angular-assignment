@@ -1,1 +1,5 @@
-<p>blog-list works!</p>
+<div *ngFor="let blog of blogs" class="blog-entry">
+    <h3>{{ blog.title }}</h3>
+    <img [src]="blog.imageUrl" alt="Image">
+    <p>{{ blog.description }}</p>
+</div>

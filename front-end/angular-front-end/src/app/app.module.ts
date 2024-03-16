@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { FooterComponent } from './shared/footer/footer.component';
-import { HeaderComponent } from './shared/header/header.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { BlogModule } from './blog/blog.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     SharedModule,
+    BlogModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
