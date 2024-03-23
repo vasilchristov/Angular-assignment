@@ -22,6 +22,8 @@ export class NewBlogComponent {
         content: form.value.content
       };
 
+      
+
       this.blogService.createBlogPost(newBlog).subscribe({
         next: (blogPost) => {
           console.log('New blog post created:', blogPost);
@@ -29,6 +31,8 @@ export class NewBlogComponent {
         },
         error: (error) => console.error('Error creating blog post:', error)
       });
+
+    
     
   }
 

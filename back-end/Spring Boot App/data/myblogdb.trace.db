@@ -1,0 +1,18 @@
+2024-03-23 17:26:42.209093+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM BLOG_POST \000d\000a\000d\000a\000d\000aDELETE [*]FROM BLOG_POST WHERE ID = 1"; SQL statement:
+SELECT * FROM BLOG_POST 
+
+
+DELETE FROM BLOG_POST WHERE ID = 1 [42000-224]
+2024-03-23 17:26:49.159715+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM BLOG_POST \000d\000a\000d\000a\000d\000aDELETE [*]FROM BLOG_POST WHERE ID == 1"; SQL statement:
+SELECT * FROM BLOG_POST 
+
+
+DELETE FROM BLOG_POST WHERE ID == 1 [42000-224]
+2024-03-23 17:26:53.967356+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM BLOG_POST \000d\000a\000d\000a\000d\000aDELETE [*]FROM BLOG_POST WHERE ID == 1"; SQL statement:
+SELECT * FROM BLOG_POST 
+
+
+DELETE FROM BLOG_POST WHERE ID == 1 [42000-224]

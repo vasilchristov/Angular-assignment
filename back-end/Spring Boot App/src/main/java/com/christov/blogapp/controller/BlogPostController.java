@@ -5,10 +5,11 @@ import com.christov.blogapp.repository.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/blogposts")
@@ -21,6 +22,43 @@ public class BlogPostController {
         this.blogPostRepository = blogPostRepository;
     }
 
+    @GetMapping
+    public List<BlogPost> getAllBlogPosts() {
+        return blogPostRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BlogPost> getBlogPostById(@PathVariable Long id) {
+        Optional<BlogPost> blogPost = blogPostRepository.findById(id);
+        return blogPost.map(post -> ResponseEntity.ok(post))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BlogPost> updateBlogPost(@PathVariable Long id, @RequestBody BlogPost blogPostDetails) {
+        BlogPost updatedBlogPost = blogPostRepository.findById(id)
+                .map(blogPost -> {
+                    blogPost.setTitle(blogPostDetails.getTitle());
+                    blogPost.setContent(blogPostDetails.getContent());
+                    blogPost.setImageUrl(blogPostDetails.getImageUrl());
+                    return blogPostRepository.save(blogPost);
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "BlogPost not found with id " + id));
+
+        return ResponseEntity.ok(updatedBlogPost);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteBlogPost(@PathVariable Long id) {
+        return blogPostRepository.findById(id)
+                .map(blogPost -> {
+                    blogPostRepository.deleteById(id);
+                    return ResponseEntity.ok().build();
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "BlogPost not found with id " + id));
+    }
+
+
     @PostMapping
     public ResponseEntity<BlogPost> createBlogPost(@RequestBody BlogPost blogPost) {
 
@@ -32,5 +70,4 @@ public class BlogPostController {
         return new ResponseEntity<>(savedBlogPost, HttpStatus.CREATED);
     }
 
-    // Additional endpoints
 }
