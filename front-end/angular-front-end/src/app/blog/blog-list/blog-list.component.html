@@ -1,5 +1,5 @@
 <div *ngFor="let blog of blogs" class="blog-entry">
-    <h3>{{ blog.title }}</h3>
+    <h4>{{ blog.title }}</h4>
     <img [src]="blog.imageUrl" alt="Image">
-    <p>{{ blog.description }}</p>
+    <p>{{ blog.content }}</p>
 </div>

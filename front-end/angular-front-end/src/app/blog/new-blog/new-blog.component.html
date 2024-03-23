@@ -1,1 +1,16 @@
-<p>new-blog works!</p>
+
+<form #blogForm="ngForm" (ngSubmit)="saveBlog(blogForm)">
+    <div>
+      <label for="title">Title</label>
+      <input id="title" name="title" ngModel required>
+    </div>
+    <div>
+      <label for="imageUrl">Image URL</label>
+      <input id="imageUrl" name="imageUrl" ngModel required>
+    </div>
+    <div>
+      <label for="content">Content</label>
+      <textarea id="content" name="content" ngModel required></textarea>
+    </div>
+    <button type="submit" [disabled]="!blogForm.form.valid">Create Blog</button>
+  </form>
