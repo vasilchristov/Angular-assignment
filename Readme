@@ -1,1 +1,4 @@
-test
+The front-end is started as any Angular project with ng serve from the project root
+
+The back-end is a simple Spring Boot app with an in-memory H2 DB. It is also started with a simple click to run the project in Intellij Idea Ultimate. 
+
