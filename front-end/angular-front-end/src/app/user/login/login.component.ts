@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  credentials = { username: '', password: '' };
+  credentials = { email: '', password: '' };
   errorMessage = '';
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -18,7 +18,7 @@ export class LoginComponent {
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        localStorage.setItem('authToken', response.token);
+        localStorage.setItem('authToken', response.jwt);
         this.router.navigate(['/dashboard']);     // check routing later
       },
       error: (error) => {
