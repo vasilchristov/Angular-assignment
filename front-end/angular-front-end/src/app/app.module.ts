@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { BlogModule } from './blog/blog.module';
 import { FormsModule } from '@angular/forms';
 import { UserModule } from './user/user.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserModule } from './user/user.module';
     BlogModule,
     FormsModule,
     UserModule,
+    CoreModule,
     AppRoutingModule
   ],
   providers: [],

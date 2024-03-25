@@ -6,7 +6,7 @@ import { ContactComponent } from './shared/header/contact/contact.component';
 import { NewBlogComponent } from './blog/new-blog/new-blog.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { DashboardComponent } from './blog/dashboard/dashboard.component';
+import { DashboardComponent } from './user/dashboard/dashboard.component';
 
 
 const routes: Routes = [

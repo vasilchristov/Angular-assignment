@@ -45,4 +45,8 @@ deleteBlogPost(id: number): Observable<void> {
   return this.http.delete<void>(`${this.apiUrl}/${id}`);
 }
 
+getUserPostsByEmail(email: string): Observable<BlogPost[]> {
+  return this.http.get<BlogPost[]>(`${this.apiUrl}/posts/byUser?email=${encodeURIComponent(email)}`);
+}
+
 }

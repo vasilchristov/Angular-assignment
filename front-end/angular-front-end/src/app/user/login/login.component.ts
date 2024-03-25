@@ -15,11 +15,17 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login(): void {
+
+    // remove previously cached token
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('email');
+
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
         console.log('Login successful', response);
         localStorage.setItem('authToken', response.jwt);
-        this.router.navigate(['/dashboard']);     // check routing later
+        localStorage.setItem('email', response.name)
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error('Login failed', error);

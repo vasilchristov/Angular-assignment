@@ -1,6 +1,8 @@
 package com.christov.blogapp.controller;
 
 import com.christov.blogapp.model.Author;
+import com.christov.blogapp.model.BlogPost;
+import com.christov.blogapp.repository.BlogPostRepository;
 import com.christov.blogapp.security.AuthenticationRequest;
 import com.christov.blogapp.security.AuthenticationResponse;
 import com.christov.blogapp.security.JwtUtil;
@@ -14,13 +16,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -40,6 +41,9 @@ public class AuthController {
 
     @Autowired
     private AuthorRepository authorRepository;
+
+    @Autowired
+    private BlogPostRepository blogPostRepository;
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody Author newUser) {
@@ -87,8 +91,19 @@ public class AuthController {
                 .loadUserByUsername(loginRequest.getEmail());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String userName = userDetails.getUsername();
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, userName));
+    }
+
+    @GetMapping("/byUser")
+    public ResponseEntity<List<BlogPost>> getPostsByUserEmail(@RequestParam String email) {
+        Optional<Author> author = authorRepository.findByEmail(email);
+        if (!author.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<BlogPost> posts = blogPostRepository.findByAuthor(author.get());
+        return ResponseEntity.ok(posts);
     }
 }
 
