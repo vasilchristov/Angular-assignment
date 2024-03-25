@@ -1,9 +1,6 @@
 package com.christov.blogapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class BlogPost {
@@ -18,9 +15,16 @@ public class BlogPost {
 
     private String content;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
+
+
     public BlogPost() {
 
     }
+
+    // add author to Angular form somehow? constructor included
 
     public BlogPost(String title, String imageUrl, String content) {
         this.title = title;

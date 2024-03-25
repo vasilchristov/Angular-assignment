@@ -7,6 +7,8 @@ import { SharedModule } from './shared/shared.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BlogModule } from './blog/blog.module';
+import { FormsModule } from '@angular/forms';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { BlogModule } from './blog/blog.module';
     AppRoutingModule,
     RouterModule,
     SharedModule,
-    BlogModule
+    BlogModule,
+    FormsModule,
+    UserModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
