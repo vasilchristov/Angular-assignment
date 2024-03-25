@@ -16,3 +16,11 @@ SELECT * FROM BLOG_POST
 
 
 DELETE FROM BLOG_POST WHERE ID == 1 [42000-224]
+2024-03-25 15:40:39.940077+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM AUTHOR \000d\000aDELETE [*]FROM AUTHOR WHERE id = 1"; SQL statement:
+SELECT * FROM AUTHOR 
+DELETE FROM AUTHOR WHERE id = 1 [42000-224]
+2024-03-25 15:40:53.500048+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM AUTHOR \000d\000aDELETE [*]FROM AUTHOR WHERE ID = 1"; SQL statement:
+SELECT * FROM AUTHOR 
+DELETE FROM AUTHOR WHERE ID = 1 [42000-224]

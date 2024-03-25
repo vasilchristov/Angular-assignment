@@ -16,12 +16,12 @@ import { UserModule } from './user/user.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     RouterModule,
     SharedModule,
     BlogModule,
     FormsModule,
-    UserModule
+    UserModule,
+    AppRoutingModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

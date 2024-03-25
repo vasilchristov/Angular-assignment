@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -63,7 +66,11 @@ public class AuthController {
 
         authorRepository.save(author);
 
-        return ResponseEntity.ok("User registered successfully!");
+        // or will create with a DTO if needed
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "User registered successfully!");
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
