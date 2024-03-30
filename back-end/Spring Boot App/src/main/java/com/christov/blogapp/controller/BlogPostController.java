@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/blogposts")
 public class BlogPostController {
@@ -59,6 +60,7 @@ public class BlogPostController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200/createBlog")
     @PostMapping
     public ResponseEntity<BlogPost> createBlogPost(@RequestBody BlogPost blogPost) {
 
