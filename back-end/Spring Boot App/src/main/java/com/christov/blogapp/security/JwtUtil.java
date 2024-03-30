@@ -7,15 +7,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class JwtUtil {
-    private String secret = "secret";
-
-    private SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256); // Keep this key secret
+    private SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private String encodedSecretKey = Base64.getEncoder().encodeToString(key.getEncoded());
 
     public String generateToken(UserDetails userDetails) {
         long nowMillis = System.currentTimeMillis();
@@ -32,7 +33,9 @@ public class JwtUtil {
     }
 
     public String extractUsername(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+        byte[] decodedKey = Base64.getDecoder().decode(encodedSecretKey);
+        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "HmacSHA256");
+        return Jwts.parser().setSigningKey(originalKey).parseClaimsJws(token).getBody().getSubject();
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
@@ -40,8 +43,10 @@ public class JwtUtil {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
-    private Boolean isTokenExpired(String token) {
-        final Date expiration = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getExpiration();
+    public Boolean isTokenExpired(String token) {
+        byte[] decodedKey = Base64.getDecoder().decode(encodedSecretKey);
+        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "HmacSHA256");
+        final Date expiration = Jwts.parser().setSigningKey(originalKey).parseClaimsJws(token).getBody().getExpiration();
         return expiration.before(new Date());
     }
 }
