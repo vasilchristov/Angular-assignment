@@ -1,0 +1,14 @@
+
+<div class="page-container">
+    <div class="author-list-heading">
+      <h1>Authors</h1>
+    </div>
+    <br>
+    <div class="authors-container">
+      <div *ngFor="let author of authors" class="author">
+        <img *ngIf="author.imageUrl" [src]="author.imageUrl" alt="Author Image">
+        <h3>{{ author.name }}</h3>
+        <p>{{ author.email }}</p>
+      </div>
+    </div>
+  </div>

@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/api/auth/register")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/api/blogposts/**")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/api/blogposts/createBlog")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/api/authors")).permitAll()
                 .anyRequest().authenticated();
 
         return http.build();

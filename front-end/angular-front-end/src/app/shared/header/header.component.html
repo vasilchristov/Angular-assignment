@@ -11,8 +11,8 @@
         <li><a routerLink="/authors">Authors</a></li>
         <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
         <li *ngIf="!isLoggedIn"><a routerLink="/register">Register</a></li>
-        <li><a routerLink="/createBlog">NewBlog</a></li>
-        <li *ngIf="isLoggedIn"><button (click)="logout()">Logout</button></li>
+        <li *ngIf="isLoggedIn"><a routerLink="/createBlog">NewBlog</a></li>
+        <li *ngIf="isLoggedIn"><button (click)="logout()" class="btn">Logout</button></li>
       </ul>
     </nav>
   </header>

@@ -35,6 +35,7 @@ export class HeaderComponent {
   }
 
   logout(): void {
+    this.authService.logout();
     localStorage.removeItem('authToken');
     localStorage.removeItem('email');
     this.isLoggedIn = false;

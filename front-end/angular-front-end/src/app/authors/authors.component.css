@@ -1,0 +1,41 @@
+
+
+.author-list-heading {
+    background-color: #1b76d1;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .author-list-heading h1 {
+    color: white;
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .authors-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .author {
+    width: 60%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .author img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  

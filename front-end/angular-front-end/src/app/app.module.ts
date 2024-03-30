@@ -10,10 +10,12 @@ import { BlogModule } from './blog/blog.module';
 import { FormsModule } from '@angular/forms';
 import { UserModule } from './user/user.module';
 import { CoreModule } from './core/core.module';
+import { AuthorsComponent } from './authors/authors.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AuthorsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,12 +2,8 @@
     <h1>Dashboard</h1>
 </div>
 
-<div class="welcome-message">
-    <h2>Welcome back, {{ authorName }}!</h2>
-    <p>Here are your articles:</p>
-</div>
-
 <div *ngIf="blogs && blogs.length > 0; else noBlogs">
+    <p>Here are your articles:</p>
     <div *ngFor="let blog of blogs" class="blog-entry">
         <h4><a [routerLink]="['/blog-details', blog.id]">{{ blog.title }}</a></h4>
         <img [src]="blog.imageUrl" alt="Image">
