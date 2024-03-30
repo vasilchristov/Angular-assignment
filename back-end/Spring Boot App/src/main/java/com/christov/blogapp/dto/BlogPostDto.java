@@ -1,12 +1,7 @@
-package com.christov.blogapp.model;
+package com.christov.blogapp.dto;
 
-import jakarta.persistence.*;
+public class BlogPostDto {
 
-@Entity
-public class BlogPost {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String title;
@@ -15,38 +10,17 @@ public class BlogPost {
 
     private String content;
 
-    private String authorEmail;
+    private String authorName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    private Author author;
-
-
-    public BlogPost() {
-
+    public BlogPostDto() {
     }
 
-    public String getAuthorEmail() {
-        return authorEmail;
-    }
-
-    public void setAuthorEmail(String authorEmail) {
-        this.authorEmail = authorEmail;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
-// add author to Angular form somehow? constructor included
-
-    public BlogPost(String title, String imageUrl, String content) {
+    public BlogPostDto(long id, String title, String imageUrl, String content, String authorName) {
+        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.content = content;
+        this.authorName = authorName;
     }
 
     public long getId() {
@@ -79,5 +53,13 @@ public class BlogPost {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 }

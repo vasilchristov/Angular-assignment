@@ -9,7 +9,9 @@ import { BlogService } from 'src/app/blog/blog.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit{
-  userPosts: BlogPost[] = [];
+
+  blogs: BlogPost[] = [];
+  authorName: string | undefined;
 
   constructor(private blogService: BlogService, private router: Router) { }
 
@@ -17,7 +19,10 @@ export class DashboardComponent implements OnInit{
     const userEmail = localStorage.getItem('email');
     if (userEmail) {
       this.blogService.getUserPostsByEmail(userEmail).subscribe(posts => {
-        this.userPosts = posts;
+        this.blogs = posts;
+        if (posts && posts.length > 0) {
+          this.authorName = posts[0].authorName;
+        }
       }, error => {
         console.error('Error fetching posts for user:', error);
       });

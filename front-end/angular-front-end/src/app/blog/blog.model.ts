@@ -3,4 +3,6 @@ export interface BlogPost {
     title: string;
     imageUrl: string;
     content: string;
+    authorEmail?: string,
+    authorName?: string;
   }

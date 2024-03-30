@@ -1,6 +1,9 @@
 package com.christov.blogapp.controller;
 
+import com.christov.blogapp.dto.BlogPostDto;
+import com.christov.blogapp.model.Author;
 import com.christov.blogapp.model.BlogPost;
+import com.christov.blogapp.repository.AuthorRepository;
 import com.christov.blogapp.repository.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -18,14 +22,23 @@ public class BlogPostController {
 
     private final BlogPostRepository blogPostRepository;
 
+    private final AuthorRepository authorRepository;
+
     @Autowired
-    public BlogPostController(BlogPostRepository blogPostRepository) {
+    public BlogPostController(BlogPostRepository blogPostRepository, AuthorRepository authorRepository) {
         this.blogPostRepository = blogPostRepository;
+        this.authorRepository = authorRepository;
     }
 
     @GetMapping
-    public List<BlogPost> getAllBlogPosts() {
-        return blogPostRepository.findAll();
+    public List<BlogPostDto> getAllBlogPosts() {
+
+        List<BlogPost> blogPosts = blogPostRepository.findAll();
+        List<BlogPostDto> blogPostDTOs = blogPosts.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+
+        return blogPostDTOs;
     }
 
     @GetMapping("/{id}")
@@ -33,6 +46,21 @@ public class BlogPostController {
         Optional<BlogPost> blogPost = blogPostRepository.findById(id);
         return blogPost.map(post -> ResponseEntity.ok(post))
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/posts/byUser")
+    public ResponseEntity<List<BlogPostDto>> getBlogPostsByUserEmail(@RequestParam String email) {
+
+        Optional<Author> author = authorRepository.findByEmail(email);
+        if (!author.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        List<BlogPost> blogPosts = blogPostRepository.findByAuthor(author.get());
+        List<BlogPostDto> blogPostDTOs = blogPosts.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(blogPostDTOs);
     }
 
 
@@ -68,8 +96,21 @@ public class BlogPostController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
+        Optional<Author> author = authorRepository.findByEmail(blogPost.getAuthorEmail());
+        blogPost.setAuthor(author.get());
+
         BlogPost savedBlogPost = blogPostRepository.save(blogPost);
         return new ResponseEntity<>(savedBlogPost, HttpStatus.CREATED);
     }
 
+
+    private BlogPostDto convertToDTO(BlogPost blogPost) {
+        BlogPostDto dto = new BlogPostDto();
+        dto.setId(blogPost.getId());
+        dto.setTitle(blogPost.getTitle());
+        dto.setImageUrl(blogPost.getImageUrl());
+        dto.setContent(blogPost.getContent());
+        dto.setAuthorName(blogPost.getAuthor().getName());
+        return dto;
+    }
 }

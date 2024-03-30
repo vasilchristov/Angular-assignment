@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  isLoggedIn: boolean;
 
+  constructor() {
+    const email = localStorage.getItem('email');
+    this.isLoggedIn = !!email;
+  }
 }
