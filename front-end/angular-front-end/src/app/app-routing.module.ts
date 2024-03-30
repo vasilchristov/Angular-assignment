@@ -7,6 +7,7 @@ import { NewBlogComponent } from './blog/new-blog/new-blog.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
+import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'createBlog', component: NewBlogComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'dashboard', component: DashboardComponent}
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'blog-details/:id', component: BlogDetailComponent }
 ];
 
 @NgModule({

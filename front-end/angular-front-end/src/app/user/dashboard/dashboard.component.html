@@ -1,10 +1,19 @@
+<div class="blog-list-heading">
+    <h1>Dashboard</h1>
+</div>
+
 <div class="welcome-message">
     <h2>Welcome back, {{ authorName }}!</h2>
     <p>Here are your articles:</p>
 </div>
 
-<div *ngFor="let blog of blogs" class="blog-entry">
-    <h4>{{ blog.title }}</h4>
-    <img [src]="blog.imageUrl" alt="Image">
-    <p>{{ blog.content }}</p>
+<div *ngIf="blogs && blogs.length > 0; else noBlogs">
+    <div *ngFor="let blog of blogs" class="blog-entry">
+        <h4><a [routerLink]="['/blog-details', blog.id]">{{ blog.title }}</a></h4>
+        <img [src]="blog.imageUrl" alt="Image">
+    </div>
 </div>
+
+<ng-template #noBlogs>
+    <p>You currently have no articles. Start by creating one!</p>
+</ng-template>

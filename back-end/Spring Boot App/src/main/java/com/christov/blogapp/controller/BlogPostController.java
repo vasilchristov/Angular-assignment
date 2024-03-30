@@ -42,10 +42,11 @@ public class BlogPostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BlogPost> getBlogPostById(@PathVariable Long id) {
+    public BlogPostDto getBlogPostById(@PathVariable Long id) {
         Optional<BlogPost> blogPost = blogPostRepository.findById(id);
-        return blogPost.map(post -> ResponseEntity.ok(post))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        BlogPostDto blogPostDto = convertToDTO(blogPost.get());
+
+        return blogPostDto;
     }
 
     @GetMapping("/posts/byUser")

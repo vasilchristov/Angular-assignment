@@ -3,7 +3,6 @@
 </div>
 
 <div *ngFor="let blog of blogs" class="blog-entry">
-    <h4>{{ blog.title }}</h4>
+    <h4><a [routerLink]="['/blog-details', blog.id]">{{ blog.title }}</a></h4>
     <img [src]="blog.imageUrl" alt="Image">
-    <p>{{ blog.content }}</p>
 </div>
