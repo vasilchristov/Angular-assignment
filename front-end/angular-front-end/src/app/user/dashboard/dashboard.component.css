@@ -58,7 +58,10 @@
 .author-image {
     width: 100px;
     height: 100px;
-    border-radius: 50%; /* Makes the image circular */
-    object-fit: cover; /* Ensures the image covers the area without being stretched */
+    border-radius: 50%;
+    object-fit: cover;
     margin-bottom: 20px;
+}
+.no-blogs {
+  text-align: center;
 }

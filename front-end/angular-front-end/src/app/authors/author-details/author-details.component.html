@@ -3,11 +3,31 @@
 </div>
 <br/>
 
+<div class="author-profile">
+    <br/>
+    <h2>Author Profile:</h2>
+</div>
+
 <div class="author-detail-container">
     <div class="author-container">
         <img class="author-image" [src]="author?.imageUrl" alt="Author Image">
         <h1 class="author-name">{{ author?.name }}</h1>
         <div class="author-email">Email: {{ author?.email }}</div>
+    </div>
+</div>
+
+
+<div *ngIf="blogs && blogs.length > 0;">
+    <div class="article-list">
+        <br/>
+        <h2>Articles by the Author:</h2>
+        <br/>
+    </div>
+    <div class="grid-container">
+        <div *ngFor="let blog of blogs" class="blog-entry" class="grid-item blog-entry">
+            <h4><a [routerLink]="['/blog-details', blog.id]">{{ blog.title }}</a></h4>
+            <img [src]="blog.imageUrl" alt="Image">
+     </div>
     </div>
 </div>
 
