@@ -8,7 +8,8 @@ import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
-import { AuthorsComponent } from './authors/authors.component';
+import { AuthorsListComponent } from './authors/authors-list/authors-list.component';
+import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'authors', component: AuthorsComponent},
+  { path: 'authors', component: AuthorsListComponent},
+  { path: 'author-details/:id', component: AuthorDetailsComponent },
   { path: 'blog-details/:id', component: BlogDetailComponent }
 ];
 

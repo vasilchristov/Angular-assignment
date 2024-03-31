@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -31,6 +32,14 @@ public class AuthorController {
         return auhorDTOs;
     }
 
+
+    @GetMapping("/{id}")
+    public AuthorDto getAuthorById(@PathVariable Long id) {
+        Optional<Author> author = authorRepository.findById(id);
+        AuthorDto authorDto = convertToAuthorDto(author.get());
+        return authorDto;
+    }
+
     public AuthorDto convertToAuthorDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());
@@ -39,5 +48,4 @@ public class AuthorController {
         authorDto.setImageUrl(author.getImageUrl());
         return authorDto;
     }
-
 }
