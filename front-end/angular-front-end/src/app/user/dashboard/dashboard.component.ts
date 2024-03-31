@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BlogPost } from 'src/app/blog/blog.model';
 import { Router } from '@angular/router';
 import { BlogService } from 'src/app/blog/blog.service';
+import { AuthorsService } from 'src/app/authors/authors.service';
+import { Author } from 'src/app/authors/authors.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +14,13 @@ export class DashboardComponent implements OnInit{
 
   blogs: BlogPost[] = [];
   authorName: string | undefined;
+  author: Author | undefined;
 
-  constructor(private blogService: BlogService, private router: Router) { }
+  constructor(
+    private blogService: BlogService, 
+    private router: Router,
+    private authorsService: AuthorsService
+    ) { }
 
   ngOnInit(): void {
     const userEmail = localStorage.getItem('email');
@@ -28,6 +35,16 @@ export class DashboardComponent implements OnInit{
       });
     } else {
       console.warn('No user email found in localStorage');
+    }
+
+    const userName = localStorage.getItem('name');
+    if (userName) {
+      this.authorsService.getAuthorByName(userName).subscribe({
+        next: (author) => {
+          this.author = author;
+        },
+        error: () => console.error('Error fetching author details')
+      });
     }
   }
   

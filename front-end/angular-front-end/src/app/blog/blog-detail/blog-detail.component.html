@@ -9,3 +9,8 @@
     <div class="blog-content">{{ blog?.content }}</div>
     <div class="blog-author">Author: {{ blog?.authorName }}</div>
 </div>
+
+<div *ngIf="isAuthor" class="blog-actions">
+    <button (click)="editPost()" class="edit-button">Edit</button>
+    <button (click)="deletePost()" class="delete-button">Delete</button>
+</div>

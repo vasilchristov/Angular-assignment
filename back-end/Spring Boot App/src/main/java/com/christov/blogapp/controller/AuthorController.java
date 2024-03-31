@@ -40,6 +40,13 @@ public class AuthorController {
         return authorDto;
     }
 
+    @GetMapping("/byName/{name}")
+    public AuthorDto getAuthorByName(@PathVariable String name) {
+        Optional<Author> author = authorRepository.findByName(name);
+        AuthorDto authorDto = convertToAuthorDto(author.get());
+        return authorDto;
+    }
+
     public AuthorDto convertToAuthorDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());

@@ -37,4 +37,29 @@
   .blog-title, .blog-content, .blog-author {
     margin-bottom: 20px;
   }
+
+  .edit-button, .delete-button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
   

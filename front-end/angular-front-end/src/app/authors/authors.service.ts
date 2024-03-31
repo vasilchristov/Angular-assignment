@@ -19,4 +19,8 @@ export class AuthorsService {
   getAuthorById(id: number): Observable<Author> {
     return this.http.get<Author>(`${this.apiUrl}/${id}`);
   }
+
+  getAuthorByName(name: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/byName/${name}`);
+  }
 }

@@ -38,6 +38,7 @@ export class HeaderComponent {
     this.authService.logout();
     localStorage.removeItem('authToken');
     localStorage.removeItem('email');
+    localStorage.removeItem('name');
     this.isLoggedIn = false;
     this.router.navigate(['/home']);
   }

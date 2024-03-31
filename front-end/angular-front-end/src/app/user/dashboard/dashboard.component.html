@@ -1,7 +1,14 @@
 <div class="blog-list-heading">
     <h1>Dashboard</h1>
 </div>
+<br/>
 
+<div *ngIf="author" class="author-profile">
+    <h1>Welcome, {{ author?.name }}!</h1>
+    <img *ngIf="author.imageUrl" [src]="author.imageUrl" alt="Author Image" class="author-image">
+    <h2>{{ author.name }}</h2>
+    <p>Email: {{ author.email }}</p>
+</div>
 
 <div *ngIf="blogs && blogs.length > 0; else noBlogs">
     <div class="article-list">

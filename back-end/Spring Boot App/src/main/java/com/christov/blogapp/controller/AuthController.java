@@ -87,13 +87,14 @@ public class AuthController {
             throw new Exception("Incorrect email or password", e);
         }
 
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(loginRequest.getEmail());
-
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
         final String jwt = jwtTokenUtil.generateToken(userDetails);
-        final String userName = userDetails.getUsername();
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt, userName));
+        Author author = authorRepository.findByEmail(loginRequest.getEmail()).get();
+
+        final String authorName = author.getName();
+
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, loginRequest.getEmail(), authorName));
     }
 
     @GetMapping("/byUser")

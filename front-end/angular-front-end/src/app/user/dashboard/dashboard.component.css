@@ -49,3 +49,16 @@
     text-align: center;
     color: #1b76d1;
   }
+
+  .author-profile {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.author-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area without being stretched */
+    margin-bottom: 20px;
+}

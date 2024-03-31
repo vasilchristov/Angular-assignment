@@ -14,10 +14,9 @@ export class RegisterComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   register(): void {
-
-    // remove previously cached token
     localStorage.removeItem('authToken');
     localStorage.removeItem('email');
+    localStorage.removeItem('name');
     
     this.authService.register(this.user).subscribe(
       response => {
