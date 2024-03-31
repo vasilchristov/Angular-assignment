@@ -7,13 +7,15 @@ import { NewBlogComponent } from './new-blog/new-blog.component';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BlogDetailComponent } from './blog-detail/blog-detail.component';
 
 
 @NgModule({
   declarations: [
     BlogListComponent,
     NewBlogComponent,
-    EditBlogComponent
+    EditBlogComponent,
+    BlogDetailComponent
   ],
   imports: [
     CommonModule,
