@@ -11,6 +11,7 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { AuthorsListComponent } from './authors/authors-list/authors-list.component';
 import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'authors', component: AuthorsListComponent},
   { path: 'author-details/:id', component: AuthorDetailsComponent },
   { path: 'edit-blog/:id', component: EditBlogComponent },
-  { path: 'blog-details/:id', component: BlogDetailComponent }
+  { path: 'blog-details/:id', component: BlogDetailComponent },
+  { path: 'edit-author/:id', component: EditUserComponent }
 ];
 
 @NgModule({

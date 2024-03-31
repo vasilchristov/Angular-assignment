@@ -8,6 +8,7 @@
     <img *ngIf="author.imageUrl" [src]="author.imageUrl" alt="Author Image" class="author-image">
     <h2>{{ author.name }}</h2>
     <p>Email: {{ author.email }}</p>
+    <button [routerLink]="['/edit-author', author?.id]" class="edit-profile-button">Edit Profile</button>
 </div>
 
 <div *ngIf="blogs && blogs.length > 0; else noBlogs">

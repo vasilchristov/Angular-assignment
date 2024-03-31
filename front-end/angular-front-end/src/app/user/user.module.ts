@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule, 

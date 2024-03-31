@@ -47,6 +47,21 @@ public class AuthorController {
         return authorDto;
     }
 
+
+    @PutMapping("/{id}")
+    public AuthorDto updateAuthor(@PathVariable(value = "id") Long authorId, @RequestBody Author authorDetails) {
+
+        Author author = authorRepository.findById(authorId).get();
+        author.setName(authorDetails.getName());
+        author.setEmail(authorDetails.getEmail());
+        author.setImageUrl(authorDetails.getImageUrl());
+        final Author updatedAuthor = authorRepository.save(author);
+
+        AuthorDto authorDto = convertToAuthorDto(author);
+        return authorDto;
+    }
+
+
     public AuthorDto convertToAuthorDto(Author author) {
         AuthorDto authorDto = new AuthorDto();
         authorDto.setId(author.getId());

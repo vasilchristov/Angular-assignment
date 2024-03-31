@@ -1,0 +1,23 @@
+<div class="edit-author-heading">
+    <h1>Edit user profile</h1>
+</div>
+<br/>
+
+<div *ngIf="author" class="edit-author-container">
+    <form (ngSubmit)="updateAuthor()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" [(ngModel)]="author.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="author.email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" [(ngModel)]="author.imageUrl" name="imageUrl">
+      </div>
+      <button type="submit" class="btn">Update Profile</button>
+    </form>
+  </div>
+  
