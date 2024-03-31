@@ -1,3 +1,14 @@
+.author-details-heading {
+    background-color: #1b76d1;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .author-details-heading h1 {
+    color: white;
+    margin: 0;
+    font-size: 20px;
+  }
 
 .author-detail-container {
     display: flex;

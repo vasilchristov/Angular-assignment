@@ -1,3 +1,15 @@
+.new-blog-heading {
+  background-color: #1b76d1;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.new-blog-heading h1 {
+  color: white;
+  margin: 0;
+  font-size: 20px;
+}
+
 form {
     max-width: 500px;
     margin: 20px auto;
@@ -40,3 +52,15 @@ form {
     background-color: #0056b3;
   }
   
+  .featured-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .featured-image-wrapper img {
+    max-width: 10%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }

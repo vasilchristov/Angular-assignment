@@ -32,3 +32,20 @@
     height: auto;
     margin-bottom: 10px;
   }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .grid-item {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .article-list {
+    text-align: center;
+    color: #1b76d1;
+  }
