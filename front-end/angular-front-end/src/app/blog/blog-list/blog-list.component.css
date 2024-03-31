@@ -33,7 +33,19 @@
   margin-bottom: 10px;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, auto); /* This will create a responsive grid */
+  gap: 1rem;
+  justify-content: center;
+}
 
+.grid-item {
+  /* You can add styles specific to grid items here */
+  /* Example for adding some padding and border */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
 
 

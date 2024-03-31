@@ -2,7 +2,9 @@
   <h1>Vocal Wisdom Articles</h1>
 </div>
 
-<div *ngFor="let blog of blogs" class="blog-entry">
+<div class="grid-container">
+  <div *ngFor="let blog of blogs" class="grid-item blog-entry">
     <h4><a [routerLink]="['/blog-details', blog.id]">{{ blog.title }}</a></h4>
     <img [src]="blog.imageUrl" alt="Image">
+  </div>
 </div>
