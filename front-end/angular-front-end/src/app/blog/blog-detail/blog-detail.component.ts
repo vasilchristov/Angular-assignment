@@ -16,7 +16,6 @@ export class BlogDetailComponent implements OnInit{
 
   blog: BlogPost | undefined;
   isAuthor: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  //isAuthor: boolean = false;
 
   constructor(
     private router: Router, 
@@ -28,7 +27,6 @@ export class BlogDetailComponent implements OnInit{
 
   ngOnInit(): void {
     this.isAuthor.next(false);
-    //this.isAuthor = false;
 
     this.route.paramMap.subscribe(params => {
       const postId = params.get('id');
@@ -38,15 +36,12 @@ export class BlogDetailComponent implements OnInit{
           if (post.authorName) {
             const authName = localStorage.getItem('name');
             this.isAuthor.next(post.authorName === authName);
-            //this.isAuthor = post.authorEmail === authName;
           } else {
             this.isAuthor.next(false);
-           //this.isAuthor = false;
           }
         }, error => {
           console.error('Error fetching blog post:', error);
           this.isAuthor.next(false);
-          //this.isAuthor = false;
         });
       }
     });
@@ -64,7 +59,7 @@ export class BlogDetailComponent implements OnInit{
 
   editPost(): void {
     if(this.blog) {
-      this.router.navigate(['/edit-blog', this.blog.id]); // Create edit route
+      this.router.navigate(['/edit-blog', this.blog.id]);
     }
   }
 }

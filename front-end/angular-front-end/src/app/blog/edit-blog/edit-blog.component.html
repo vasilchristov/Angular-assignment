@@ -1,1 +1,22 @@
-<p>edit-blog works!</p>
+
+  <div class="edit-blog-heading">
+    <h1>Edit Blog Post</h1>
+  </div>
+  <br/>
+  
+  <form *ngIf="blog" #editForm="ngForm" (ngSubmit)="updateBlog(editForm)">
+      <div>
+        <label for="title">Title</label>
+        <input id="title" name="title" [(ngModel)]="blog.title" required>
+      </div>
+      <div>
+        <label for="imageUrl">Image URL</label>
+        <input id="imageUrl" name="imageUrl" [(ngModel)]="blog.imageUrl" required>
+      </div>
+      <div>
+        <label for="content">Content</label>
+        <textarea id="content" name="content" [(ngModel)]="blog.content" required></textarea>
+      </div>
+      <button type="submit" [disabled]="!editForm.form.valid">Update Blog</button>
+  </form>
+  
