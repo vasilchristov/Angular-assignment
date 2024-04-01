@@ -40,4 +40,16 @@ export class EditUserComponent {
       });
     }
   }
+
+  deleteAuthor(): void {
+    if (this.author && this.author.id && confirm('Are you sure you want to delete your profile? This action cannot be undone.')) {
+      this.authorsService.deleteAuthor(this.author.id).subscribe({
+        next: () => {
+          localStorage.clear();
+          this.router.navigate(['/home']);
+        },
+        error: (error) => console.error('Error deleting author', error)
+      });
+    }
+  }
 }

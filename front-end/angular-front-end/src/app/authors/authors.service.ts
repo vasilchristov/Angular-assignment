@@ -49,4 +49,8 @@ export class AuthorsService {
   setCurrentAuthor(author: Author | null): void {
     this.currentAuthorSubject.next(author);
   }
+
+  deleteAuthor(authorId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${authorId}`);
+  }
 }

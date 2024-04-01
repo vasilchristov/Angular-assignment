@@ -3,10 +3,13 @@ package com.christov.blogapp.controller;
 import com.christov.blogapp.dto.AuthorDto;
 import com.christov.blogapp.dto.BlogPostDto;
 import com.christov.blogapp.model.Author;
+import com.christov.blogapp.model.BlogPost;
 import com.christov.blogapp.repository.AuthorRepository;
+import com.christov.blogapp.repository.BlogPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -19,8 +22,11 @@ public class AuthorController {
 
     private final AuthorRepository authorRepository;
 
-    public AuthorController(AuthorRepository authorRepository) {
+    private final BlogPostRepository blogPostRepository;
+
+    public AuthorController(AuthorRepository authorRepository, BlogPostRepository blogPostRepository) {
         this.authorRepository = authorRepository;
+        this.blogPostRepository = blogPostRepository;
     }
 
     @GetMapping
@@ -59,6 +65,21 @@ public class AuthorController {
 
         AuthorDto authorDto = convertToAuthorDto(author);
         return authorDto;
+    }
+
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAuthor(@PathVariable Long id) {
+        Optional<Author> author = authorRepository.findById(id);
+        if (!author.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        List<BlogPost> blogPosts = blogPostRepository.findByAuthor(author.get());
+        blogPostRepository.deleteAll(blogPosts);
+
+        authorRepository.deleteById(id);
+        return ResponseEntity.ok().build();
     }
 
 

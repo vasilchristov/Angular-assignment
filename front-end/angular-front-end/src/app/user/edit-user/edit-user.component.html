@@ -4,7 +4,7 @@
 <br/>
 
 <div *ngIf="author" class="edit-author-container">
-    <form (ngSubmit)="updateAuthor()">
+    <form #authorForm="ngForm">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" [(ngModel)]="author.name" name="name" required>
@@ -17,7 +17,10 @@
         <label for="imageUrl">Image URL</label>
         <input type="text" id="imageUrl" [(ngModel)]="author.imageUrl" name="imageUrl">
       </div>
-      <button type="submit" class="btn">Update Profile</button>
+      <div class="form-actions">
+        <button type="button" class="edit-button" (click)="updateAuthor()">Update Profile</button>
+        <button type="button" class="delete-button" (click)="deleteAuthor()">Delete Profile</button>
+      </div>
     </form>
   </div>
   
