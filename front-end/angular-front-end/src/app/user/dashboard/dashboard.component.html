@@ -3,7 +3,7 @@
 </div>
 <br/>
 
-<div *ngIf="author" class="author-profile">
+<div *ngIf="(author$ | async) as author" class="author-profile">
     <h1>Welcome, {{ author?.name }}!</h1>
     <img *ngIf="author.imageUrl" [src]="author.imageUrl" alt="Author Image" class="author-image">
     <h2>{{ author.name }}</h2>
