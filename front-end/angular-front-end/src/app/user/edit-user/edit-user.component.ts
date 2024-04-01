@@ -31,9 +31,13 @@ export class EditUserComponent {
   updateAuthor(): void {
     if (this.author && this.author.id) {
       this.authorsService.updateAuthor(this.author.id, this.author).subscribe({
-        next: () => this.router.navigate(['/dashboard']),
+        next: (updatedAuthor) => {
+          localStorage.setItem('name', updatedAuthor.name);
+          localStorage.setItem('email', updatedAuthor.email);
+          this.router.navigate(['/dashboard']);
+        },
         error: (error) => console.error('Error updating author', error)
       });
-   }
+    }
   }
 }
