@@ -33,6 +33,7 @@ public class AuthorController {
     public List<AuthorDto> getAllAuthors() {
         List<Author> authorsList = authorRepository.findAll();
         List<AuthorDto> auhorDTOs = authorsList.stream()
+                .filter(author -> null != author.getPosts() && !author.getPosts().isEmpty())
                 .map(this::convertToAuthorDto)
                 .collect(Collectors.toList());
         return auhorDTOs;
