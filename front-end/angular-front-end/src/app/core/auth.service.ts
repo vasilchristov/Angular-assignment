@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject} from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LoginResponse } from './login-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +18,26 @@ export class AuthService {
     return !!localStorage.getItem('authToken');
   }
 
-  login(credentials: { email: string, password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
+  login(credentials: { email: string, password: string }): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
+        localStorage.setItem('authToken', response.jwt);
+        localStorage.setItem('name', response.name);
+        localStorage.setItem('email', response.email);
         this.loggedInStatus.next(true);
       })
-    );;
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('email');
+    localStorage.removeItem('name');
+    this.loggedInStatus.next(false);
   }
 
   get isLoggedIn() {
     return this.loggedInStatus.asObservable();
-  }
-
-  logout(): void {
-    this.loggedInStatus.next(false);
   }
 
   register(user: any): Observable<any> {
@@ -40,4 +47,6 @@ export class AuthService {
   getEmail(): string | null {
     return localStorage.getItem('email');
   }
+
+  
 }

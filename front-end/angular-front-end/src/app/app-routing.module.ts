@@ -12,6 +12,7 @@ import { AuthorsListComponent } from './authors/authors-list/authors-list.compon
 import { AuthorDetailsComponent } from './authors/author-details/author-details.component';
 import { EditBlogComponent } from './blog/edit-blog/edit-blog.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { AuthGuard } from './core/auth.guard';
 
 
 const routes: Routes = [
@@ -19,15 +20,15 @@ const routes: Routes = [
   { path: 'home', component: BlogListComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent},
-  { path: 'createBlog', component: NewBlogComponent},
+  { path: 'createBlog', component: NewBlogComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'authors', component: AuthorsListComponent},
   { path: 'author-details/:id', component: AuthorDetailsComponent },
-  { path: 'edit-blog/:id', component: EditBlogComponent },
+  { path: 'edit-blog/:id', component: EditBlogComponent , canActivate: [AuthGuard] },
   { path: 'blog-details/:id', component: BlogDetailComponent },
-  { path: 'edit-author/:id', component: EditUserComponent }
+  { path: 'edit-author/:id', component: EditUserComponent , canActivate: [AuthGuard] }
 ];
 
 @NgModule({
