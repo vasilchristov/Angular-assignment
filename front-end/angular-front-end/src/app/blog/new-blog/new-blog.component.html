@@ -5,20 +5,23 @@
 <br/>
 
 <form #blogForm="ngForm" (ngSubmit)="saveBlog(blogForm)">
-    <div>
-      <label for="title">Title</label>
-      <input id="title" name="title" ngModel required>
-    </div>
-    <div>
-      <label for="imageUrl">Image URL</label>
-      <input id="imageUrl" name="imageUrl" ngModel required>
-    </div>
-    <div>
-      <label for="content">Content</label>
-      <textarea id="content" name="content" ngModel required></textarea>
-    </div>
-    <button type="submit" [disabled]="!blogForm.form.valid">Create Blog</button>
-  </form>
+  <div>
+    <label for="title">Title</label>
+    <input id="title" name="title" ngModel required #title="ngModel">
+    <div *ngIf="title.invalid && title.touched" class="error">Title is required.</div>
+  </div>
+  <div>
+    <label for="imageUrl">Image URL</label>
+    <input id="imageUrl" name="imageUrl" ngModel required #imageUrl="ngModel">
+    <div *ngIf="imageUrl.invalid && imageUrl.touched" class="error">Image URL is required.</div>
+  </div>
+  <div>
+    <label for="content">Content</label>
+    <textarea id="content" name="content" ngModel required #content="ngModel"></textarea>
+    <div *ngIf="content.invalid && content.touched" class="error">Content is required.</div>
+  </div>
+  <button type="submit" [disabled]="!blogForm.valid">Create Blog</button>
+</form>
 
   <div class="featured-image-wrapper">
     <img src="https://t4.ftcdn.net/jpg/05/05/39/07/360_F_505390776_8ilykzGiVSpIjUqdEXFhDY1ACRJZPDRD.jpg" alt="Featured Image">

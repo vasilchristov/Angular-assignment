@@ -5,18 +5,21 @@
   <br/>
   
   <form *ngIf="blog" #editForm="ngForm" (ngSubmit)="updateBlog(editForm)">
-      <div>
-        <label for="title">Title</label>
-        <input id="title" name="title" [(ngModel)]="blog.title" required>
-      </div>
-      <div>
-        <label for="imageUrl">Image URL</label>
-        <input id="imageUrl" name="imageUrl" [(ngModel)]="blog.imageUrl" required>
-      </div>
-      <div>
-        <label for="content">Content</label>
-        <textarea id="content" name="content" [(ngModel)]="blog.content" required></textarea>
-      </div>
-      <button type="submit" [disabled]="!editForm.form.valid">Update Blog</button>
+    <div>
+      <label for="title">Title</label>
+      <input id="title" name="title" [(ngModel)]="blog.title" required #title="ngModel">
+      <div *ngIf="title.invalid && title.touched" class="error">Title is required.</div>
+    </div>
+    <div>
+      <label for="imageUrl">Image URL</label>
+      <input id="imageUrl" name="imageUrl" [(ngModel)]="blog.imageUrl" required #imageUrl="ngModel">
+      <div *ngIf="imageUrl.invalid && imageUrl.touched" class="error">Image URL is required.</div>
+    </div>
+    <div>
+      <label for="content">Content</label>
+      <textarea id="content" name="content" [(ngModel)]="blog.content" required #content="ngModel"></textarea>
+      <div *ngIf="content.invalid && content.touched" class="error">Content is required.</div>
+    </div>
+    <button type="submit" [disabled]="!editForm.valid">Update Blog</button>
   </form>
   
