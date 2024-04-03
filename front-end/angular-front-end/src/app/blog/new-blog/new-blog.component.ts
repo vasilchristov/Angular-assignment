@@ -34,7 +34,10 @@ export class NewBlogComponent {
           form.reset();
           this.router.navigate(['/dashboard']);
         },
-        error: (error) => console.error('Error creating blog post:', error)
+        error: (error) => {
+          console.error('Error creating blog post:', error);
+          this.router.navigate(['/dashboard']);
+        }
       });
   }
 }

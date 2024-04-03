@@ -709,3 +709,36 @@ DELETE * FROM BLOG_POST WHERE AUTHOR_ID = 129 [42001-224]
 2024-04-01 17:22:00.883436+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "U&'How do you balance career and family, and is it possible to have both?\\000a\\0... (8945)"; SQL statement:
 insert into blog_post (author_id,author_email,content,image_url,title,id) values (?,?,?,?,?,default) [22001-224]
+2024-04-02 23:35:46.282177+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'https://i.iheart.com/v3/surl/aHR0cDovL2ltYWdlLmloZWFydC5jb20vaW1hZ2VzL3JvdmkvNT... (455)"; SQL statement:
+insert into author (email,image_url,name,password,id) values (?,?,?,?,default) [22001-224]
+2024-04-02 23:36:30.712928+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'https://i.iheart.com/v3/surl/aHR0cDovL2ltYWdlLmloZWFydC5jb20vaW1hZ2VzL3JvdmkvNT... (455)"; SQL statement:
+insert into author (email,image_url,name,password,id) values (?,?,?,?,default) [22001-224]
+2024-04-02 23:37:21.515913+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'https://i.iheart.com/v3/surl/aHR0cDovL2ltYWdlLmloZWFydC5jb20vaW1hZ2VzL3JvdmkvNT... (455)"; SQL statement:
+insert into author (email,image_url,name,password,id) values (?,?,?,?,default) [22001-224]
+2024-04-02 23:37:37.527596+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'https://i.iheart.com/v3/surl/aHR0cDovL2ltYWdlLmloZWFydC5jb20vaW1hZ2VzL3JvdmkvNT... (455)"; SQL statement:
+insert into author (email,image_url,name,password,id) values (?,?,?,?,default) [22001-224]
+2024-04-02 23:39:06.235925+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "IMAGE_URL CHARACTER VARYING(255)": "'https://i.iheart.com/v3/surl/aHR0cDovL2ltYWdlLmloZWFydC5jb20vaW1hZ2VzL3JvdmkvNT... (455)"; SQL statement:
+insert into author (email,image_url,name,password,id) values (?,?,?,?,default) [22001-224]
+2024-04-03 19:28:58.356233+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM BLOG_POST WHERE AUTHOR_ID = 193"; expected "identifier"; SQL statement:
+DELETE * FROM BLOG_POST WHERE AUTHOR_ID = 193 [42001-224]
+2024-04-03 19:29:04.699131+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM BLOG_POST WHERE AUTHOR_ID = 193"; expected "identifier"; SQL statement:
+DELETE * FROM BLOG_POST WHERE AUTHOR_ID = 193 [42001-224]
+2024-04-03 19:38:07.677871+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "U&'Inhale the melody, exhale the magic! Master the art of breath control, the fo... (257)"; SQL statement:
+insert into blog_post (author_id,author_email,content,image_url,title,id) values (?,?,?,?,?,default) [22001-224]
+2024-04-03 19:40:02.299557+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "U&'Inhale the melody, exhale the magic! Master the art of breath control, the fo... (257)"; SQL statement:
+insert into blog_post (author_id,author_email,content,image_url,title,id) values (?,?,?,?,?,default) [22001-224]
+2024-04-03 19:41:43.942998+03:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "U&'Tap into the resonance within, where every note finds its home. Explore the d... (271)"; SQL statement:
+insert into blog_post (author_id,author_email,content,image_url,title,id) values (?,?,?,?,?,default) [22001-224]
+2024-04-03 19:42:01.863826+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "CONTENT CHARACTER VARYING(255)": "'Tap into the resonance within, where every note finds its home. Explore the dep... (267)"; SQL statement:
+insert into blog_post (author_id,author_email,content,image_url,title,id) values (?,?,?,?,?,default) [22001-224]
